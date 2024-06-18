@@ -11,22 +11,22 @@ preinit:
 	mkdir -p dist/darwin
 
 x86_64: preinit clean
-	env GOOS=linux GOARCH=amd64 go build -o $(BINARY) simple-synoindex-client.go simple-synoindex-utils.go
-	env GOOS=linux GOARCH=amd64 go build -o $(BINARY_SERVER) simple-synoindex-server.go simple-synoindex-utils.go
+	env GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -o $(BINARY) simple-synoindex-client.go simple-synoindex-utils.go
+	env GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -o $(BINARY_SERVER) simple-synoindex-server.go simple-synoindex-utils.go
 	mv $(BINARY) dist/x86_64
 	mv $(BINARY_SERVER) dist/x86_64
 	cp $(INIFILE) dist/x86_64
 
 x86: preinit clean
-	env GOOS=linux GOARCH=386 go build -o $(BINARY) simple-synoindex-client.go simple-synoindex-utils.go
-	env GOOS=linux GOARCH=386 go build -o $(BINARY_SERVER) simple-synoindex-server.go simple-synoindex-utils.go
+	env GOOS=linux GOARCH=386 CGO_ENABLED=0 go build -o $(BINARY) simple-synoindex-client.go simple-synoindex-utils.go
+	env GOOS=linux GOARCH=386 CGO_ENABLED=0 go build -o $(BINARY_SERVER) simple-synoindex-server.go simple-synoindex-utils.go
 	mv $(BINARY) dist/x86
 	mv $(BINARY_SERVER) dist/x86
 	cp $(INIFILE) dist/x86
 
 darwin: preinit clean
-	env GOOS=darwin GOARCH=amd64 go build -o $(BINARY) simple-synoindex-client.go simple-synoindex-utils.go
-	env GOOS=darwin GOARCH=amd64 go build -o $(BINARY_SERVER) simple-synoindex-server.go simple-synoindex-utils.go
+	env GOOS=darwin GOARCH=amd64 CGO_ENABLED=0 go build -o $(BINARY) simple-synoindex-client.go simple-synoindex-utils.go
+	env GOOS=darwin GOARCH=amd64 CGO_ENABLED=0 go build -o $(BINARY_SERVER) simple-synoindex-server.go simple-synoindex-utils.go
 	mv $(BINARY) dist/darwin
 	mv $(BINARY_SERVER) dist/darwin
 	cp $(INIFILE) dist/darwin
